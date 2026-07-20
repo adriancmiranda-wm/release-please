@@ -42,9 +42,13 @@ export class BranchName {
 
   static parse(
     branchName: string,
-    logger: Logger = defaultLogger
+    logger: Logger = defaultLogger,
+    exactName?: string
   ): BranchName | undefined {
     try {
+      if (exactName && branchName === exactName) {
+        return new ExactBranchName(branchName);
+      }
       const branchNameClass = getAllResourceNames().find(clazz => {
         return clazz.matches(branchName);
       });
@@ -85,6 +89,9 @@ export class BranchName {
         group
       )}`
     );
+  }
+  static ofExactName(exactName: string): BranchName {
+    return new ExactBranchName(exactName);
   }
   constructor(_branchName: string) {}
 
@@ -244,6 +251,18 @@ class GroupBranchName extends BranchName {
   }
   toString(): string {
     return `${RELEASE_PLEASE}--branches--${this.targetBranch}--groups--${this.component}`;
+  }
+}
+
+class ExactBranchName extends BranchName {
+  private exactName: string;
+
+  constructor(branchName: string) {
+    super(branchName);
+    this.exactName = branchName;
+  }
+  toString(): string {
+    return this.exactName;
   }
 }
 

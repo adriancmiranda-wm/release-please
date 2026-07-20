@@ -116,6 +116,7 @@ export interface ReleaserConfig {
   includeVInTag?: boolean;
   includeVInReleaseName?: boolean;
   pullRequestTitlePattern?: string;
+  pullRequestBranchName?: string;
   pullRequestHeader?: string;
   pullRequestFooter?: string;
   componentNoSpace?: boolean;
@@ -182,6 +183,7 @@ interface ReleaserConfigJson {
   'changelog-host'?: string;
   'include-commit-authors'?: boolean;
   'pull-request-title-pattern'?: string;
+  'pull-request-branch-name'?: string;
   'pull-request-header'?: string;
   'pull-request-footer'?: string;
   'component-no-space'?: boolean;
@@ -1416,6 +1418,7 @@ function extractReleaserConfig(
     includeVInReleaseName: config['include-v-in-release-name'],
     changelogType: config['changelog-type'],
     pullRequestTitlePattern: config['pull-request-title-pattern'],
+    pullRequestBranchName: config['pull-request-branch-name'],
     pullRequestHeader: config['pull-request-header'],
     pullRequestFooter: config['pull-request-footer'],
     componentNoSpace: config['component-no-space'],
@@ -1781,6 +1784,9 @@ function mergeReleaserConfig(
     pullRequestTitlePattern:
       pathConfig.pullRequestTitlePattern ??
       defaultConfig.pullRequestTitlePattern,
+    pullRequestBranchName:
+      pathConfig.pullRequestBranchName ??
+      defaultConfig.pullRequestBranchName,
     pullRequestHeader:
       pathConfig.pullRequestHeader ?? defaultConfig.pullRequestHeader,
     pullRequestFooter:

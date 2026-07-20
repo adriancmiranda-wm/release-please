@@ -66,6 +66,7 @@ Extra options:
 | `--pull-request-title-pattern`     | `string`                                                                | Override the pull request title pattern. Defaults to `chore${scope}: release${component} ${version}`                                                                                                             |
 | `--pull-request-header`            | `string`                                                                | Override the pull request header. Defaults to `:robot: I have created a release *beep* *boop*`                                                                                                                   |
 | `--pull-request-footer`            | `string`                                                                | Override the pull request footer. Defaults to `This PR was generated with Release Please. See documentation.`                                                                                                    |
+| `--pull-request-branch-name`       | `string`                                                                | Override the exact branch name for the release pull request. When set, the branch is named exactly `<value>` instead of the default `release-please--branches--<target-branch>`                                  |
 | `--component-no-space`             | `boolean`                                                               | release-please automatically adds ` ` (space) in front of parsed ${component}. This option indicates whether that behaviour should be disabled. Defaults to `false`                                               |
 | `--extra-files`                    | `string[]`                                                              | Extra file paths for the release strategy to consider                                                                                                                                                            |
 | `--version-file`                   | `string`                                                                | Ruby only. Path to the `version.rb` file                                                                                                                                                                         |
@@ -118,6 +119,7 @@ need to specify your release options:
 | `--pull-request-title-pattern` | `string` | Override the pull request title pattern. Defaults to `chore${scope}: release${component} ${version}` |
 | `--pull-request-header` | `string` | Override the pull request header. Defaults to `:robot: I have created a release *beep* *boop*` |
 | `--pull-request-footer` | `string` | Override the pull request footer. Defaults to `This PR was generated with Release Please. See documentation.` |
+| `--pull-request-branch-name` | `string` | Override the exact branch name for the release pull request. When set, the branch is named exactly `<value>` instead of the default `release-please--branches--<target-branch>` |
 | `--signoff` | string | Add [`Signed-off-by`](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---signoff) line at the end of the commit log message using the user and email provided. (format "Name \<email@example.com\>") |
 | `--extra-files` | `string[]` | Extra file paths for the release strategy to consider |
 | `--version-file` | `string` | Ruby only. Path to the `version.rb` file |
@@ -159,6 +161,7 @@ need to specify your release options:
 | `--pull-request-title-pattern` | `string` | Override the pull request title pattern. Defaults to `chore${scope}: release${component} ${version}` |
 | `--pull-request-header` | `string` | Override the pull request header. Defaults to `:robot: I have created a release *beep* *boop*` |
 | `--pull-request-footer` | `string` | Override the pull request footer. Defaults to `This PR was generated with Release Please. See documentation.` |
+| `--pull-request-branch-name` | `string` | Override the exact branch name for the release pull request. When set, the branch is named exactly `<value>` instead of the default `release-please--branches--<target-branch>` |
 | `--draft` | `boolean` | If set, create releases as drafts |
 | `--prerelease` | `boolean` | If set, create releases that are pre-major or pre-release version marked as pre-release on Github|
 | `--force-tag-creation` | `boolean` | Force the creation of a Git tag for the release. Useful when `--draft` is enabled, because GitHub does not create a Git tag for draft releases until they are published. This causes release-please to fail to find the previous release, potentially generating incorrect changelogs. Setting this option ensures the tag is created immediately. |

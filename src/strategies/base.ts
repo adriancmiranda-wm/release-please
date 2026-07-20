@@ -77,6 +77,7 @@ export interface BaseStrategyOptions {
   includeVInTag?: boolean;
   includeVInReleaseName?: boolean;
   pullRequestTitlePattern?: string;
+  pullRequestBranchName?: string;
   pullRequestHeader?: string;
   pullRequestFooter?: string;
   componentNoSpace?: boolean;
@@ -115,6 +116,7 @@ export abstract class BaseStrategy implements Strategy {
   protected includeVInReleaseName: boolean;
   protected initialVersion?: string;
   readonly pullRequestTitlePattern?: string;
+  protected pullRequestBranchName?: string;
   readonly pullRequestHeader?: string;
   readonly pullRequestFooter?: string;
   readonly componentNoSpace?: boolean;
@@ -153,6 +155,7 @@ export abstract class BaseStrategy implements Strategy {
     this.includeVInTag = options.includeVInTag ?? true;
     this.includeVInReleaseName = options.includeVInReleaseName ?? true;
     this.pullRequestTitlePattern = options.pullRequestTitlePattern;
+    this.pullRequestBranchName = options.pullRequestBranchName;
     this.pullRequestHeader = options.pullRequestHeader;
     this.pullRequestFooter = options.pullRequestFooter;
     this.componentNoSpace = options.componentNoSpace;
@@ -318,7 +321,9 @@ export abstract class BaseStrategy implements Strategy {
       this.componentNoSpace
     );
     const branchComponent = await this.getBranchComponent();
-    const branchName = branchComponent
+    const branchName = this.pullRequestBranchName
+      ? BranchName.ofExactName(this.pullRequestBranchName)
+      : branchComponent
       ? BranchName.ofComponentTargetBranch(branchComponent, this.targetBranch)
       : BranchName.ofTargetBranch(this.targetBranch);
     const releaseNotesBody = await this.buildReleaseNotes(

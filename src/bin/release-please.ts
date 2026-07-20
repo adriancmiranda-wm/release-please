@@ -121,6 +121,7 @@ interface TaggingArgs {
   includeVInTags?: boolean;
   monorepoTags?: boolean;
   pullRequestTitlePattern?: string;
+  pullRequestBranchName?: string;
   pullRequestHeader?: string;
   pullRequestFooter?: string;
   componentNoSpace?: boolean;
@@ -448,6 +449,11 @@ function taggingOptions(yargs: yargs.Argv): yargs.Argv {
       describe: 'Title pattern to make release PR',
       type: 'string',
     })
+    .option('pull-request-branch-name', {
+      describe:
+        'Override the exact branch name for the release pull request. When set, the branch is named exactly <value> instead of the default release-please--branches--<target-branch>',
+      type: 'string',
+    })
     .option('pull-request-header', {
       describe: 'Header for release PR',
       type: 'string',
@@ -499,6 +505,7 @@ const createReleasePullRequestCommand: yargs.CommandModule<
           changelogType: argv.changelogType,
           changelogHost: argv.changelogHost,
           pullRequestTitlePattern: argv.pullRequestTitlePattern,
+          pullRequestBranchName: argv.pullRequestBranchName,
           pullRequestHeader: argv.pullRequestHeader,
           pullRequestFooter: argv.pullRequestFooter,
           componentNoSpace: argv.componentNoSpace,

@@ -116,6 +116,24 @@ If you wish to avoid that, consider using `component-no-space: true`/`--componen
 | `${version}` | The version of the component being released |
 | `${branch?}` | The target branch of the pull request. If you have multiple release branches, this helps identify which release branch we are working on |
 
+### Pull Request Branch Name
+
+By default, release-please creates the release pull request on a branch named
+`release-please--branches--<target-branch>`. If your workflow requires a
+specific branch name (for example, a CI/CD process that extracts a ticket
+identifier from the branch name), you can override it with the
+`--pull-request-branch-name` CLI option or the `pull-request-branch-name`
+option in the manifest configuration.
+
+When set, the branch is named exactly as provided. For example,
+with `--pull-request-branch-name=release/PROJ-1234` the branch is
+`release/PROJ-1234`.
+
+> [!WARNING]
+> Changing the branch name means release-please will no longer recognise
+> branches created under the previous naming scheme. Existing open release PRs
+> should be closed before enabling this option.
+
 ### Pull Request Header
 
 If you would like to customize the pull request header, you can use the

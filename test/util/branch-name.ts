@@ -151,6 +151,49 @@ describe('BranchName', () => {
     });
   });
 
+  describe('ofExactName', () => {
+    it('builds a branch name from an exact string', () => {
+      const branchName = BranchName.ofExactName('release/PROJ-1234');
+      expect(branchName.toString()).to.eql('release/PROJ-1234');
+    });
+
+    it('works with a simple name without slashes', () => {
+      const branchName = BranchName.ofExactName('release');
+      expect(branchName.toString()).to.eql('release');
+    });
+
+    it('works with nested path segments', () => {
+      const branchName = BranchName.ofExactName('release/PROJ-1234/main');
+      expect(branchName.toString()).to.eql('release/PROJ-1234/main');
+    });
+  });
+
+  describe('parse with exact name', () => {
+    it('parses when the branch name matches exactly', () => {
+      const branchName = BranchName.parse('release/PROJ-1234', undefined, 'release/PROJ-1234');
+      expect(branchName).to.not.be.undefined;
+      expect(branchName?.toString()).to.eql('release/PROJ-1234');
+    });
+
+    it('round-trips through ofExactName and parse', () => {
+      const original = BranchName.ofExactName('release/PROJ-1234');
+      const parsed = BranchName.parse(original.toString(), undefined, 'release/PROJ-1234');
+      expect(parsed).to.not.be.undefined;
+      expect(parsed?.toString()).to.eql(original.toString());
+    });
+
+    it('falls back to standard parsing when no exact name is given', () => {
+      const branchName = BranchName.parse('release-please--branches--main');
+      expect(branchName).to.not.be.undefined;
+      expect(branchName?.getTargetBranch()).to.eql('main');
+    });
+
+    it('does not match when exact name differs', () => {
+      const branchName = BranchName.parse('release/PROJ-9999', undefined, 'release/PROJ-1234');
+      expect(branchName).to.be.undefined;
+    });
+  });
+
   describe('isComponent', () => {
     it('returns false for default branch name', () => {
       const branchName = BranchName.parse('release-please--branches--main');
