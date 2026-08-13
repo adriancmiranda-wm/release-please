@@ -4,6 +4,33 @@
 
 [1]: https://www.npmjs.com/package/release-please?activeTab=versions
 
+## [17.11.1](https://github.com/googleapis/release-please/compare/v17.11.0...v17.11.1) (2026-07-31)
+
+
+### Bug Fixes
+
+* **deps:** upgrade brace-expansion version to 5.0.8 ([6159d83](https://github.com/googleapis/release-please/commit/6159d83eb6b277f1c95dbf2e5a9207940d97749f))
+
+## [17.11.0](https://github.com/googleapis/release-please/compare/v17.10.4...v17.11.0) (2026-07-28)
+
+
+### Features
+
+* add PHPLibrarian strategy ([#2862](https://github.com/googleapis/release-please/issues/2862)) ([9aa4fc0](https://github.com/googleapis/release-please/commit/9aa4fc069f502094b3e79c323677af860c9d64d8))
+* add ruby-librarian strategy ([#2861](https://github.com/googleapis/release-please/issues/2861)) ([cb1b179](https://github.com/googleapis/release-please/commit/cb1b17992ca4b9f97b838c6e3466cc8f654bcc04))
+
+
+### Bug Fixes
+
+* **deps:** update brace-expansion to address Dependabot alerts [#99](https://github.com/googleapis/release-please/issues/99) and [#100](https://github.com/googleapis/release-please/issues/100) ([#2857](https://github.com/googleapis/release-please/issues/2857)) ([e9e921a](https://github.com/googleapis/release-please/commit/e9e921a89fc7ae36dbd10184ffc1dfbfb33c29b2))
+
+## [17.10.4](https://github.com/googleapis/release-please/compare/v17.10.3...v17.10.4) (2026-07-21)
+
+
+### Bug Fixes
+
+* dynamically replace changelog reference keyword with 'refs' ([5b31578](https://github.com/googleapis/release-please/commit/5b3157824739ed7fe5d2e0fd5d1c1c8f0c4fa204))
+
 ## [17.10.3](https://github.com/googleapis/release-please/compare/v17.10.2...v17.10.3) (2026-07-07)
 
 

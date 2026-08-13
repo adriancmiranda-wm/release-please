@@ -37,11 +37,13 @@ import {NodeLibrarian} from './strategies/node-librarian';
 import {OCaml} from './strategies/ocaml';
 import {PHP} from './strategies/php';
 import {PHPYoshi} from './strategies/php-yoshi';
+import {PHPLibrarian} from './strategies/php-librarian';
 import {Python} from './strategies/python';
 import {PythonLibrarian} from './strategies/python-librarian';
 import {R} from './strategies/r';
 import {Ruby} from './strategies/ruby';
 import {RubyYoshi} from './strategies/ruby-yoshi';
+import {RubyLibrarian} from './strategies/ruby-librarian';
 import {Rust} from './strategies/rust';
 import {Sfdx} from './strategies/sfdx';
 import {Simple} from './strategies/simple';
@@ -103,11 +105,13 @@ const releasers: Record<string, ReleaseBuilder> = {
   ocaml: options => new OCaml(options),
   php: options => new PHP(options),
   'php-yoshi': options => new PHPYoshi(options),
+  'php-librarian': options => new PHPLibrarian(options),
   python: options => new Python(options),
   'python-librarian': options => new PythonLibrarian(options),
   r: options => new R(options),
   ruby: options => new Ruby(options),
   'ruby-yoshi': options => new RubyYoshi(options),
+  'ruby-librarian': options => new RubyLibrarian(options),
   rust: options => new Rust(options),
   salesforce: options => new Sfdx(options),
   sfdx: options => new Sfdx(options),
