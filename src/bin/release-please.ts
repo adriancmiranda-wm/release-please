@@ -605,6 +605,7 @@ const createReleaseCommand: yargs.CommandModule<{}, CreateReleaseArgs> = {
           prerelease: argv.prerelease,
           includeComponentInTag: argv.monorepoTags,
           includeVInTag: argv.includeVInTags,
+          pullRequestBranchName: argv.pullRequestBranchName,
         },
         extractManifestOptions(argv),
         argv.path

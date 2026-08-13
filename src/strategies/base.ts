@@ -631,7 +631,8 @@ export abstract class BaseStrategy implements Strategy {
     }
     const branchName = BranchName.parse(
       mergedPullRequest.headBranchName,
-      this.logger
+      this.logger,
+      this.pullRequestBranchName
     );
     if (!branchName) {
       this.logger.error(`Bad branch name: ${mergedPullRequest.headBranchName}`);
