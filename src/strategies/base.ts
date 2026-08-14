@@ -664,10 +664,15 @@ export abstract class BaseStrategy implements Strategy {
       !pullRequestBody.releaseData[0].component
     ) {
       const branchComponent = await this.getBranchComponent();
-      // standalone release PR, ensure the components match
+      // standalone release PR, ensure the components match. Skip this check
+      // when an exact custom branch name is configured
+      // (--pull-request-branch-name): an arbitrary branch name has no
+      // parseable component, so branchName.component is always undefined
+      // there and this comparison would always (incorrectly) fail.
       if (
+        !this.pullRequestBranchName &&
         this.normalizeComponent(branchName.component) !==
-        this.normalizeComponent(branchComponent)
+          this.normalizeComponent(branchComponent)
       ) {
         this.logger.warn(
           `PR component: ${branchName.component} does not match configured component: ${branchComponent}`
